@@ -37,6 +37,7 @@ export const env = createEnv({
 			BASEROW_TABLE_ID_SUBMISSIONS: v.optional(
 				v.pipe(v.string(), v.transform(Number), v.number(), v.integer(), v.minValue(1)),
 			),
+			FS_ABSTRACTS_PATH: v.optional(v.pipe(v.string(), v.nonEmpty())),
 		});
 		return v.parse(Schema, input);
 	},

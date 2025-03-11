@@ -1,0 +1,62 @@
+---
+import Radio from "@/components/form/radio.astro";
+import RadioGroup from "@/components/form/radio-group.astro";
+import RadioGroupOptions from "@/components/form/radio-group-options.astro";
+import TextAreaField from "@/components/form/text-area-field.astro";
+import TextInputField from "@/components/form/text-input-field.astro";
+
+import Label from "./form/label.astro";
+---
+
+<form
+	action="/api/submission"
+	class="grid gap-y-6"
+	data-astro-reload
+	method="post"
+	enctype="multipart/form-data"
+>
+	<TextInputField label="First Name" name="first-name" required={true} />
+
+	<TextInputField label="Last Name" name="last-name" required={true} />
+
+	<TextInputField label="Email" name="email" required={true} type="email" />
+
+	<TextInputField label="Affiliation (University/Institute)" name="affiliation" required={false} />
+
+	<RadioGroup label="Type of Submission" required={true}>
+		<RadioGroupOptions>
+			<Radio label="Poster" name="submission-type" required={true} value="poster" />
+			<Radio label="Demo" name="submission-type" required={true} value="demo" />
+		</RadioGroupOptions>
+	</RadioGroup>
+
+	<TextInputField label="Title" name="title" required={true} />
+
+	<label class="grid gap-y-1">
+		<Label required={true}>Abstract</Label>
+		<input
+			type="file"
+			name="abstract"
+			id="abstract"
+			accept="application/pdf"
+			class="rounded-md border border-neutral-300 px-3 py-1.5 disabled:cursor-not-allowed disabled:bg-neutral-50 disabled:opacity-50"
+		/>
+	</label>
+
+	<TextAreaField label="Comments & Remarks" name="comments" required={false} />
+
+	<label class="text-sm">
+		<input class="mr-0.5" name="data-consent" required={true} type="checkbox" />
+		<span>
+			I expressly acknowledge the storage of my registration details for the duration of the
+			conference in line with the <a href="/en/privacy-declaration/">privacy declaration.</a>
+		</span>
+	</label>
+
+	<button
+		class="rounded-md bg-[#212529] px-4 py-2 font-semibold text-white transition hover:bg-neutral-700"
+		type="submit"
+	>
+		Submit
+	</button>
+</form>

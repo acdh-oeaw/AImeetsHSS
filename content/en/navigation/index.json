@@ -37,10 +37,10 @@
       }
     },
     {
-      "discriminant": "page",
+      "discriminant": "link",
       "value": {
         "label": "Call for Posters & Demos",
-        "id": "call-for-posters-and-demos"
+        "href": "/registration-submission"
       }
     },
     {

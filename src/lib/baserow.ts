@@ -16,7 +16,7 @@ interface Submission {
 	Affiliation: string;
 	Date: string;
 	Title: string;
-	Abstract: string;
+	Type: string;
 	Comments: string;
 }
 
