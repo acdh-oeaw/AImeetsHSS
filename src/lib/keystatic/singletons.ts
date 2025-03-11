@@ -243,6 +243,55 @@ export const registrationPageConference = createSingleton((locale) => {
 	});
 });
 
+export const registrationPageDiscussion = createSingleton((locale) => {
+	const paths = createSingletonPaths("/registration-discussion/", locale);
+
+	return singleton({
+		label: createLabel("Podiumsdiskussion Registration", locale),
+		path: paths.contentPath,
+		format: { data: "json" },
+		entryLayout: "form",
+		schema: {
+			hero: fields.object(
+				{
+					title: fields.text({
+						label: "Title",
+						validation: { isRequired: true },
+					}),
+					subtitle: fields.text({
+						label: "Subtitle",
+						validation: { isRequired: true },
+					}),
+					image: fields.object(
+						{
+							src: fields.image({
+								label: "Image",
+								validation: { isRequired: false },
+								...createAssetOptions(paths.assetPath),
+							}),
+							caption: fields.text({
+								label: "Image caption",
+								validation: { isRequired: false },
+							}),
+						},
+						{
+							label: "Image",
+						},
+					),
+				},
+				{
+					label: "Hero section",
+				},
+			),
+			content: fields.mdx({
+				label: "Content",
+				options: createContentFieldOptions(paths.assetPath),
+				components: {},
+			}),
+		},
+	});
+});
+
 export const metadata = createSingleton((locale) => {
 	const paths = createSingletonPaths("/metadata/", locale);
 

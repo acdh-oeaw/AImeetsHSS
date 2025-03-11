@@ -14,6 +14,7 @@ const RegistrationFormSchema = v.pipe(
 		"last-name": v.pipe(v.string(), v.nonEmpty()),
 		email: v.pipe(v.string(), v.email()),
 		affiliation: v.pipe(v.string()),
+		type: v.pipe(v.string()),
 		"data-consent": v.literal("on"),
 	}),
 	v.transform((data) => {
@@ -22,6 +23,7 @@ const RegistrationFormSchema = v.pipe(
 			lastName: data["last-name"],
 			email: data.email,
 			affiliation: data.affiliation,
+			type: data.type,
 			dataConsent: true,
 			date: isoDate(new Date()),
 		};
@@ -48,19 +50,21 @@ export async function POST(context: APIContext) {
 			Email: submission.email,
 			Affiliation: submission.affiliation,
 			Date: submission.date,
-			Type: "Conference",
+			Type: submission.type,
 		});
+		console.log(res);
 		const subject = `[AImeetsHSS] registration form submission ${submission.lastName}`;
-		const message = `Dear ${submission.firstName} ${submission.lastName},\n
-			please find below details about your registration request for the AImeetsHSS conference.\n
-			ID: ${res.id as string}\n
-			First Name: ${submission.firstName}\n
-			Last Name: ${submission.lastName}\n
-			Email: ${submission.email}\n
-			Affiliation: ${submission.affiliation}\n
-			Registration Date: ${submission.date}\n
-			Registered for: Conference\n
-			Best,\nthe conference team`;
+		const message =
+			`Dear ${submission.firstName} ${submission.lastName},\n` +
+			`please find below details about your registration request for the AImeetsHSS conference.\n` +
+			`ID: ${res.id as string}\n` +
+			`First Name: ${submission.firstName}\n` +
+			`Last Name: ${submission.lastName}\n` +
+			`Email: ${submission.email}\n` +
+			`Affiliation: ${submission.affiliation}\n` +
+			`Registration Date: ${submission.date}\n` +
+			`Registered for: ${submission.type}\n` +
+			`Best,\nThe AImeetsHSS team`;
 
 		await sendEmail({
 			from: env.EMAIL_CONTACT_ADDRESS!,
@@ -71,7 +75,6 @@ export async function POST(context: APIContext) {
 		return context.redirect(`/en/success?data=${encodeURIComponent(JSON.stringify(res))}`, 303);
 	} catch (error) {
 		log.error(error);
-
 		return Response.json({ message: "Failed to submit." }, { status: 500 });
 	}
 }

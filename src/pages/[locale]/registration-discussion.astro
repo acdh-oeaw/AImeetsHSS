@@ -1,0 +1,88 @@
+---
+import type { GetStaticPathsResult } from "astro";
+
+import ImageOverlay from "../../components/image-overlay.astro";
+import RegistrationForm from "../../components/registration-form-discussion.astro";
+import Section from "../../components/section.astro";
+import { locales } from "../../config/i18n.config";
+import Layout from "../../layouts/page.layout.astro";
+import { createSingletonResource } from "../../lib/content/create-resource";
+import { createI18n } from "../../lib/i18n/create-i18n";
+
+export async function getStaticPaths() {
+	return locales.map((locale) => {
+		return { params: { locale } };
+	}) satisfies GetStaticPathsResult;
+}
+
+const { locale } = Astro.params;
+
+const { t } = await createI18n(locale);
+
+const page = await createSingletonResource("registrationPageDiscussion", locale).read();
+
+const { hero, content } = page.data;
+
+const { default: Content } = await page.compile(content);
+---
+
+<Layout locale={locale} title={hero.title}>
+	<main class="mb-2xl">
+		<section class:list={[hero.image?.src && "border-b border-neutral-200"]} class="relative">
+			{
+				hero.image?.src ? (
+					<figure>
+						<img
+							alt=""
+							class="absolute inset-0 size-full object-cover"
+							loading="eager"
+							src={hero.image.src}
+						/>
+						<ImageOverlay />
+						{hero.image.caption ? (
+							<figcaption class="absolute bottom-2 right-2 z-10 text-xs font-medium">
+								{hero.image.caption}
+							</figcaption>
+						) : null}
+					</figure>
+				) : null
+			}
+			<div
+				class:list={[hero.image?.src ? "text-white" : "border-b border-neutral-200"]}
+				class="container relative z-10 py-2xl"
+			>
+				<div class="grid justify-start justify-items-start gap-y-xs py-2xl sm:gap-y-0">
+					<h1
+						class="relative inline-block text-5xl font-bold lowercase tracking-tighter before:absolute xs:text-6xl sm:text-7xl md:text-8xl"
+					>
+						{hero.title}.
+					</h1>
+					<p
+						class:list={[hero.image?.src ? "text-white" : "text-text-weak"]}
+						class="relative inline-block text-2xl font-semibold tracking-tight sm:ml-12 md:ml-16 md:text-3xl"
+					>
+						{hero.subtitle}
+					</p>
+				</div>
+			</div>
+		</section>
+		<Section>
+			<div class="container prose py-xl">
+				{
+					content ? (
+						<Content />
+					) : (
+						<p class="flex justify-center py-xl text-center text-sm text-text-weak">
+							{t("common.coming-soon")}
+						</p>
+					)
+				}
+			</div>
+		</Section>
+		<Section>
+			<div class="container prose py-xl">
+				<RegistrationForm />
+			</div>
+		</Section>
+	</main>
+</Layout>
