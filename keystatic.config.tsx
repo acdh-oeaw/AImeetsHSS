@@ -13,7 +13,7 @@ import {
 	navigation,
 	registrationPageConference,
 	registrationPageDiscussion,
-	registrationPageSubmission
+	registrationPageSubmission,
 } from "@/lib/keystatic/singletons";
 
 export default config({
@@ -58,7 +58,7 @@ export default config({
 			Registration: [
 				...locales.map((locale) => withI18nPrefix("registrationPageConference", locale)),
 				...locales.map((locale) => withI18nPrefix("registrationPageDiscussion", locale)),
-				...locales.map((locale) => withI18nPrefix("registrationPageSubmission", locale))
+				...locales.map((locale) => withI18nPrefix("registrationPageSubmission", locale)),
 			],
 			Pages: locales.map((locale) => withI18nPrefix("pages", locale)),
 			Navigation: locales.map((locale) => withI18nPrefix("navigation", locale)),
