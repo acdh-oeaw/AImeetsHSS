@@ -22,13 +22,6 @@
           {
             "discriminant": "page",
             "value": {
-              "label": "Speakers",
-              "id": "speakers"
-            }
-          },
-          {
-            "discriminant": "page",
-            "value": {
               "label": "Podiumsdiskussion",
               "id": "podiumsdiskussion"
             }
