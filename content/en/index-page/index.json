@@ -1,10 +1,10 @@
 {
-	"hero": {
-		"title": "AI meets Humanities & Social Sciences",
-		"subtitle": "23-25 June 2025,  Austrian Academy of Sciences, Vienna",
-		"image": {
-			"src": "/assets/content/en/index-page/hero/image/src.png"
-		}
-	},
-	"sections": []
+  "hero": {
+    "title": "AI meets Humanities & Social Sciences",
+    "subtitle": "23-25 June 2025,  Austrian Academy of Sciences, Vienna",
+    "image": {
+      "src": "/assets/content/en/index-page/hero/image/src.png"
+    }
+  },
+  "sections": []
 }
