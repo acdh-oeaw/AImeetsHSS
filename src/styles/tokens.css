@@ -59,9 +59,9 @@
 	--space-2xl: 5rem;
 
 	/** Corner radius. */
-	--corner-rounding-sm: 0.5rem;
-	--corner-rounding-md: 1rem;
-	--corner-rounding-lg: 2rem;
+	--corner-rounding-sm: 0.25rem;
+	--corner-rounding-md: 0.5rem;
+	--corner-rounding-lg: 1rem;
 
 	/** Shadows. */
 	--shadow-raised: 0px 4px 8px oklch(0% 0 none / 4%), 0px 2px 4px oklch(0% 0 none / 8%);
