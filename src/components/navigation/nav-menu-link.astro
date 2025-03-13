@@ -11,10 +11,7 @@ const { class: className, ...rest } = Astro.props;
 
 <Link
 	{...rest}
-	class:list={[
-		"inline-flex rounded px-4 py-2 transition hover:text-neutral-950 dark:hover:text-neutral-0",
-		className,
-	]}
+	class:list={["inline-flex rounded px-4 py-2 transition hover:text-neutral-950", className]}
 	data-nav-link
 >
 	<slot />

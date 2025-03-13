@@ -12,7 +12,7 @@ const closeDialog = t("Search.close-dialog");
 
 <site-search>
 	<button
-		class="dark:hover:text-neutral-0 inline-flex items-center gap-x-2 px-4 py-2 text-neutral-700 hover:text-neutral-950 dark:text-neutral-300"
+		class="inline-flex items-center gap-x-2 px-4 py-2 text-neutral-700 hover:text-neutral-950"
 		data-search-open
 		disabled
 	>
@@ -22,7 +22,7 @@ const closeDialog = t("Search.close-dialog");
 
 	<dialog
 		aria-label={label}
-		class="fixed mx-auto min-h-full w-full max-w-screen-md border bg-white backdrop:bg-black/20 backdrop:backdrop-blur-sm open:grid sm:mt-20 sm:max-h-[calc(100%-10rem)] sm:min-h-64 sm:rounded-lg sm:shadow-lg dark:bg-neutral-900"
+		class="fixed mx-auto min-h-full w-full max-w-screen-md border bg-white backdrop:bg-black/20 backdrop:backdrop-blur-sm open:grid sm:mt-20 sm:max-h-[calc(100%-10rem)] sm:min-h-64 sm:rounded-lg sm:shadow-lg"
 	>
 		<div class="grid size-full gap-y-4 px-8 py-6" data-dialog-content>
 			<button class="absolute right-4 top-4 text-sm" data-search-close>

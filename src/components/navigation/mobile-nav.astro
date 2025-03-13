@@ -13,7 +13,7 @@ const navigation = await createSingletonResource("navigation", locale).read();
 ---
 
 <div id={mobileNavId} hidden class="px-4 pb-6 lg:hidden" data-mobile-nav>
-	<ul class="grid gap-y-2 text-neutral-700 dark:text-neutral-300" role="list">
+	<ul class="grid gap-y-2 text-neutral-700" role="list">
 		{
 			navigation.data.links.map((item) => {
 				switch (item.discriminant) {
@@ -22,10 +22,7 @@ const navigation = await createSingletonResource("navigation", locale).read();
 
 						return (
 							<li>
-								<Link
-									class="dark:hover:text-neutral-0 transition hover:text-neutral-950"
-									href={href}
-								>
+								<Link class="transition hover:text-neutral-950" href={href}>
 									{label}
 								</Link>
 							</li>
@@ -37,10 +34,7 @@ const navigation = await createSingletonResource("navigation", locale).read();
 
 						return (
 							<li>
-								<Link
-									class="dark:hover:text-neutral-0 transition hover:text-neutral-950"
-									href={`/${id}`}
-								>
+								<Link class="transition hover:text-neutral-950" href={`/${id}`}>
 									{label}
 								</Link>
 							</li>
@@ -69,10 +63,7 @@ const navigation = await createSingletonResource("navigation", locale).read();
 
 													return (
 														<li>
-															<Link
-																class="dark:hover:text-neutral-0 transition hover:text-neutral-950"
-																href={href}
-															>
+															<Link class="transition hover:text-neutral-950" href={href}>
 																{label}
 															</Link>
 														</li>
@@ -84,10 +75,7 @@ const navigation = await createSingletonResource("navigation", locale).read();
 
 													return (
 														<li>
-															<Link
-																class="dark:hover:text-neutral-0 transition hover:text-neutral-950"
-																href={`/${id}`}
-															>
+															<Link class="transition hover:text-neutral-950" href={`/${id}`}>
 																{label}
 															</Link>
 														</li>
