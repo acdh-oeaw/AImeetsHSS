@@ -1,0 +1,8 @@
+extraVolumeMounts:
+  - name: ai-meets-hss-abstracts
+    mountPath: "/app/abstracts"
+    subPath: ""
+extraVolumes:
+  - name: ai-meets-hss-abstracts
+    persistentVolumeClaim:
+      claimName: ai-meets-hss-abstracts
