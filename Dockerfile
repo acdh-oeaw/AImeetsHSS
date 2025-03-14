@@ -11,9 +11,6 @@ RUN corepack enable
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
 
-# set UID and GID for oeaw smb defaults
-RUN groupadd -g 101 -o node
-RUN useradd -m -u 101 -g 101 -o -s /bin/bash node
 USER node
 
 COPY --chown=node:node .npmrc package.json pnpm-lock.yaml ./
@@ -61,8 +58,14 @@ RUN --mount=type=secret,id=KEYSTATIC_GITHUB_CLIENT_ID,uid=1000 \
 # serve
 FROM node:22-alpine AS serve
 
+RUN apk --no-cache add shadow
+
 RUN mkdir /app && chown -R node:node /app
 WORKDIR /app
+
+# set UID and GID for oeaw smb defaults
+RUN groupmod -o -g 101 node
+RUN usermod -u 101 -g 101 node
 
 USER node
 
