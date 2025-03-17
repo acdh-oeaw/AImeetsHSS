@@ -3,6 +3,7 @@ import TextInputField from "@/components/form/text-input-field.astro";
 ---
 
 <form action="/api/registration" class="grid gap-y-6" data-astro-reload method="post">
+	<h3>Personal details:</h3>
 	<TextInputField label="First Name" name="first-name" required={true} />
 
 	<TextInputField label="Last Name" name="last-name" required={true} />
@@ -13,6 +14,25 @@ import TextInputField from "@/components/form/text-input-field.astro";
 
 	<input type="hidden" name="type" value="conference" />
 
+	<h3>Registering for days:</h3>
+	<label class="text-sm">
+		<input class="mr-0.5" name="monday" required={false} type="checkbox" />
+		<span> Monday, 23 June 2025 </span>
+	</label>
+	<label class="text-sm">
+		<input class="mr-0.5" name="tuesday" required={false} type="checkbox" />
+		<span> Tuesday, 24 June 2025 </span>
+	</label>
+	<label class="text-sm">
+		<input class="mr-0.5" name="wednesday" required={false} type="checkbox" />
+		<span> Wednesday, 25 June 2025 </span>
+	</label>
+	<label class="text-sm">
+		<input class="mr-0.5" name="discussion" required={false} type="checkbox" />
+		<span> Public Discussion on Wednesday, 25 June 2025 </span>
+	</label>
+
+	<h3>GDPR Consent:</h3>
 	<label class="text-sm">
 		<input class="mr-0.5" name="data-consent" required={true} type="checkbox" />
 		<span>

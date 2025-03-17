@@ -15,6 +15,10 @@ const RegistrationFormSchema = v.pipe(
 		email: v.pipe(v.string(), v.email()),
 		affiliation: v.pipe(v.string()),
 		type: v.pipe(v.string()),
+		monday: v.optional(v.literal("on")),
+		tuesday: v.optional(v.literal("on")),
+		wednesday: v.optional(v.literal("on")),
+		discussion: v.optional(v.picklist(["true", "on"])),
 		"data-consent": v.literal("on"),
 	}),
 	v.transform((data) => {
@@ -24,6 +28,10 @@ const RegistrationFormSchema = v.pipe(
 			email: data.email,
 			affiliation: data.affiliation,
 			type: data.type,
+			monday: data.monday,
+			tuesday: data.tuesday,
+			wednesday: data.wednesday,
+			discussion: data.discussion,
 			dataConsent: true,
 			date: isoDate(new Date()),
 		};
@@ -51,25 +59,47 @@ export async function POST(context: APIContext) {
 			Affiliation: submission.affiliation,
 			Date: submission.date,
 			Type: submission.type,
+			Monday: submission.monday ? true : false,
+			Tuesday: submission.tuesday ? true : false,
+			Wednesday: submission.wednesday ? true : false,
+			Discussion: submission.discussion ? true : false,
 		});
-		console.log(res);
-		const subject = `[AImeetsHSS] registration form submission ${submission.lastName}`;
-		const message =
-			`Dear ${submission.firstName} ${submission.lastName},\n` +
-			`please find below details about your registration request for the AImeetsHSS conference.\n` +
-			`ID: ${res.id as string}\n` +
-			`First Name: ${submission.firstName}\n` +
-			`Last Name: ${submission.lastName}\n` +
-			`Email: ${submission.email}\n` +
-			`Affiliation: ${submission.affiliation}\n` +
-			`Registration Date: ${submission.date}\n` +
-			`Registered for: ${submission.type}\n` +
-			`Best,\nThe AImeetsHSS team`;
-
+		console.log(result.output.type);
+		let subject = "";
+		let message = "";
+		if (result.output.type === "conference") {
+			subject = `[AImeetsHSS] registration form submission ${submission.lastName}`;
+			message =
+				`Dear ${submission.firstName} ${submission.lastName},\n` +
+				`please find below details about your registration request for the AImeetsHSS conference.\n` +
+				`ID: ${res.id as string}\n` +
+				`First Name: ${submission.firstName}\n` +
+				`Last Name: ${submission.lastName}\n` +
+				`Email: ${submission.email}\n` +
+				`Affiliation: ${submission.affiliation}\n` +
+				`Registration Date: ${submission.date}\n` +
+				`Registered for: ${submission.type}\n` +
+				`We would like to inform you, that there will be pictures taken and/or filming during the conference. This material may be used for various media (print, TV, online) and publications (print, online) of the Austrian Academy of Sciences. With your participation you agree to the use of this material.\n` +
+				`Best,\nThe AImeetsHSS team`;
+		} else if (result.output.type === "discussion") {
+			subject = `[AImeetsHSS] Anmeldung Podiumsdiskussion ${submission.lastName}`;
+			message =
+				`WerteR ${submission.firstName} ${submission.lastName},\n` +
+				`untenan übersenden wir Ihnen ihre Anmeldedaten zur Podiumsdiskussion am XXXX.\n` +
+				`ID: ${res.id as string}\n` +
+				`Vorname: ${submission.firstName}\n` +
+				`Nachname: ${submission.lastName}\n` +
+				`Email: ${submission.email}\n` +
+				`Institution: ${submission.affiliation}\n` +
+				`Anmeldedatum: ${submission.date}\n` +
+				`Angemeldet für: ${submission.type}\n` +
+				`Wir dürfen Sie als Teilnehmer/in an der Podiumsdiskussion darüber informieren, dass im Rahmen dieser Veranstaltung möglicherweise Fotografien und/oder Filme erstellt werden. Diese Aufnahmen können in verschiedenen Medien (Print, TV, Online,...) und in Publikationen (Print, Online,...) der Österreichischen Akademie der Wissenschaften Verwendung finden. Mit Ihrer Teilnahme an der Veranstaltung stimmen Sie dieser Verwendung zu.\n` +
+				`Beste Grüße,\nDas AImeetsHSS Konferenzteam`;
+		}
 		await sendEmail({
 			from: env.EMAIL_CONTACT_ADDRESS!,
 			to: submission.email,
-			subject,
+			subject: subject,
 			text: message,
 		});
 		return context.redirect(`/en/success?data=${encodeURIComponent(JSON.stringify(res))}`, 303);

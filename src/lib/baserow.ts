@@ -7,6 +7,10 @@ interface ConferenceRegistration {
 	Affiliation: string;
 	Date: string;
 	Type: string;
+	Monday?: boolean;
+	Tuesday?: boolean;
+	Wednesday?: boolean;
+	Discussion?: boolean;
 }
 
 interface Submission {
