@@ -12,14 +12,19 @@ const { locale } = Astro.props;
 const { t } = await createI18n(locale);
 ---
 
-<footer class="bg-neutral-900 text-neutral-200">
+<footer class="bg-white text-neutral-400">
 	<div class="container flex justify-between gap-x-lg py-lg text-sm">
+		<div class="flex items-center justify-between">
+			<a href="https://www.oeaw.ac.at/">
+				<img src="/logo-lang-de.png" alt="Logo der ÖAW" class="h-2xl" />
+			</a>
+		</div>
 		<div>
 			&copy;
 			{new Date().getUTCFullYear()}
 		</div>
 		<div>
-			<LocaleLink class="transition hover:text-white aria-[current]:font-strong" href="/imprint">
+			<LocaleLink class="transition hover:text-black aria-[current]:font-strong" href="/imprint">
 				{t("common.imprint")}
 			</LocaleLink>
 		</div>
