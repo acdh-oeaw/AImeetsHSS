@@ -36,7 +36,7 @@ readinessProbe:
 extraVolumeMounts:
   - name: ai-meets-hss-abstracts
     mountPath: "/app/abstracts"
-    subPath: ""
+    subPath: "R_AImeetsHSS_Abstracts_24823"
 extraVolumes:
   - name: ai-meets-hss-abstracts
     persistentVolumeClaim:
