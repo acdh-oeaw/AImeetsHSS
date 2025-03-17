@@ -21,7 +21,7 @@ const { t } = await createI18n(locale);
 const navigation = await createSingletonResource("navigation", locale).read();
 ---
 
-<header class="border-b">
+<header class="fixedheader border-b bg-white">
 	<div
 		class="mx-auto flex w-full max-w-screen-lg items-center justify-between px-4 py-6 text-sm font-medium"
 	>
@@ -112,3 +112,13 @@ const navigation = await createSingletonResource("navigation", locale).read();
 	</div>
 	<MobileNav />
 </header>
+
+<style>
+	.fixedheader {
+		position: fixed;
+		top: 0;
+		left: 0;
+		z-index: 100;
+		width: 100%;
+	}
+</style>
