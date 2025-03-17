@@ -21,6 +21,7 @@ interface Submission {
 	Date: string;
 	Title: string;
 	Type: string;
+	Language: string;
 	Comments: string;
 }
 

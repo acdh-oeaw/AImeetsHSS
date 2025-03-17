@@ -23,6 +23,7 @@ const RegistrationFormSchema = v.pipe(
 		email: v.pipe(v.string(), v.email()),
 		affiliation: v.pipe(v.string()),
 		"submission-type": v.picklist(["poster", "demo"]),
+		language: v.picklist(["english", "german"]),
 		title: v.pipe(v.string(), v.nonEmpty()),
 		abstract: FileSchema,
 		comments: v.pipe(v.string()),
@@ -35,6 +36,7 @@ const RegistrationFormSchema = v.pipe(
 			email: data.email,
 			affiliation: data.affiliation,
 			type: data["submission-type"],
+			language: data.language,
 			title: data.title,
 			abstract: data.abstract,
 			comments: data.comments,
@@ -65,6 +67,7 @@ export async function POST(context: APIContext) {
 			Date: submission.date,
 			Title: submission.title,
 			Type: submission.type,
+			Language: submission.language,
 			Comments: submission.comments,
 		});
 
@@ -86,17 +89,19 @@ export async function POST(context: APIContext) {
 
 		await writeToFile();
 
-		const subject = `[AImeetsHSS] registration form submission ${submission.lastName}`;
+		const subject = `[AImeetsHSS] submission form ${submission.lastName}`;
 		const message =
 			`Dear ${submission.firstName} ${submission.lastName},\n` +
-			`please find below details about your registration request for the AImeetsHSS conference.\n` +
+			`please find below details about your submission to the AImeetsHSS conference.\n` +
 			`ID: ${res.id as string}\n` +
 			`First Name: ${submission.firstName}\n` +
 			`Last Name: ${submission.lastName}\n` +
 			`Email: ${submission.email}\n` +
 			`Affiliation: ${submission.affiliation}\n` +
-			`Registration Date: ${submission.date}\n` +
-			`Registered for: ${submission.type}\n` +
+			`Submission Date: ${submission.date}\n` +
+			`Submission Title: ${submission.title}\n` +
+			`Submission Type: ${submission.type}\n` +
+			`Submission Language: ${submission.language}\n` +
 			`Best,\nThe AImeetsHSS team`;
 
 		await sendEmail({

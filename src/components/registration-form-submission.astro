@@ -29,6 +29,12 @@ import Label from "./form/label.astro";
 			<Radio label="Live Demonstration" name="submission-type" required={true} value="demo" />
 		</RadioGroupOptions>
 	</RadioGroup>
+	<RadioGroup label="Language" required={true}>
+		<RadioGroupOptions>
+			<Radio label="English" name="language" required={true} value="english" />
+			<Radio label="Deutsch" name="language" required={true} value="german" />
+		</RadioGroupOptions>
+	</RadioGroup>
 
 	<TextInputField label="Title" name="title" required={true} />
 
