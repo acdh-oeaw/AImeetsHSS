@@ -1,6 +1,3 @@
-ingress:
-  tls:
-    enabled: false
 extraVolumeMounts:
   - name: ai-meets-hss-abstracts
     mountPath: "/app/abstracts"
