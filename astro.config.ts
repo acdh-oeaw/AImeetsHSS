@@ -77,4 +77,5 @@ export default defineConfig({
 		port: 3000,
 	},
 	site: env.PUBLIC_APP_BASE_URL,
+	publicDir: "public",
 });
