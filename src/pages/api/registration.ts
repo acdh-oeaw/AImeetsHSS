@@ -64,7 +64,6 @@ export async function POST(context: APIContext) {
 			Wednesday: submission.wednesday ? true : false,
 			Discussion: submission.discussion ? true : false,
 		});
-		console.log(result.output.type);
 		let subject = "";
 		let message = "";
 		if (result.output.type === "conference") {

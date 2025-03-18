@@ -6,7 +6,7 @@ import slugify from "@sindresorhus/slugify";
 
 import { env } from "@/config/env.config";
 import type { Locale } from "@/config/i18n.config";
-import { withBasePath } from "@/lib/with-base-path.ts";
+import { withBasePath } from "@/lib/with-base-path";
 
 export function createLabel(label: string, locale: Locale) {
 	return `${label} (${locale})`;
@@ -15,7 +15,7 @@ export function createLabel(label: string, locale: Locale) {
 export function createAssetOptions<TPath extends `/${string}/`>(path: TPath) {
 	return {
 		directory: `./public/assets${path}` as const,
-		publicPath: withBasePath(`/assets${path}`) as const,
+		publicPath: withBasePath(`/assets${path}`),
 		transformFilename(originalFilename: string) {
 			return slugify(originalFilename, { preserveCharacters: ["."] });
 		},

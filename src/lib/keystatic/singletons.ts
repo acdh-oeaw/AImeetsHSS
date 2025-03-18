@@ -362,10 +362,12 @@ export const metadata = createSingleton((locale) => {
 				{
 					creator: fields.text({
 						label: "Creator",
+						//@ts-expect-error this may be d/t keystatic patch
 						validation: { isRequired: true, pattern: validation.twitterHandle },
 					}),
 					site: fields.text({
 						label: "Site",
+						//@ts-expect-error this may be d/t keystatic patch
 						validation: { isRequired: true, pattern: validation.twitterHandle },
 					}),
 				},
