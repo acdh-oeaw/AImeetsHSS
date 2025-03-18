@@ -2,6 +2,8 @@
 import ImageOverlay from "@/components/image-overlay.astro";
 import LocaleLink from "@/components/locale-link.astro";
 
+import { withBasePath } from "../lib/with-base-path";
+
 export interface Props {
 	href: string;
 	image?: { src?: string | null; caption?: string };
@@ -22,7 +24,7 @@ const { href, image, title } = Astro.props;
 						alt=""
 						class="absolute inset-0 size-full object-cover"
 						loading="lazy"
-						src={image.src}
+						src={withBasePath(image.src)}
 					/>
 					<ImageOverlay variant="light" />
 				</>

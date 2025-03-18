@@ -2,6 +2,7 @@
 import LocaleLink from "@/components/locale-link.astro";
 import type { Locale } from "@/config/i18n.config";
 import { createI18n } from "@/lib/i18n/create-i18n";
+import { withBasePath } from "@/lib/with-base-path";
 
 interface Props {
 	locale: Locale;
@@ -16,7 +17,7 @@ const { t } = await createI18n(locale);
 	<div class="container flex justify-between gap-x-lg py-lg text-sm">
 		<div class="flex items-center justify-between">
 			<a href="https://www.oeaw.ac.at/">
-				<img src="/logo-lang-de.png" alt="Logo der ÖAW" class="h-2xl" />
+				<img src={withBasePath("/logo-lang-de.png")} alt="Logo der ÖAW" class="h-2xl" />
 			</a>
 		</div>
 		<div>

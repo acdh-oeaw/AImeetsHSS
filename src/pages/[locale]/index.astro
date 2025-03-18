@@ -12,6 +12,8 @@ import Layout from "@/layouts/page.layout.astro";
 import { createCollectionResource, createSingletonResource } from "@/lib/content/create-resource";
 import { createI18n } from "@/lib/i18n/create-i18n";
 
+import { withBasePath } from "../../lib/with-base-path";
+
 export async function getStaticPaths() {
 	return locales.map((locale) => {
 		return { params: { locale } };
@@ -39,7 +41,7 @@ const { default: Content } = await page.compile(content);
 							alt=""
 							class="absolute inset-0 size-full object-cover"
 							loading="eager"
-							src={hero.image.src}
+							src={withBasePath(hero.image.src)}
 						/>
 						<ImageOverlay />
 						{hero.image.caption ? (

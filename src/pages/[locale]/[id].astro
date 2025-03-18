@@ -8,6 +8,8 @@ import Layout from "@/layouts/page.layout.astro";
 import { createCollectionResource } from "@/lib/content/create-resource";
 import { createI18n } from "@/lib/i18n/create-i18n";
 
+import { withBasePath } from "../../lib/with-base-path";
+
 export async function getStaticPaths() {
 	return (
 		await Promise.all(
@@ -45,7 +47,7 @@ const { default: Content } = await page.compile(content);
 							alt=""
 							class="absolute inset-0 size-full object-cover"
 							loading="eager"
-							src={image.src}
+							src={withBasePath(image.src)}
 						/>
 						{image.caption ? (
 							<figcaption class="absolute bottom-1.5 right-2 z-10 text-xs font-medium text-neutral-300">
