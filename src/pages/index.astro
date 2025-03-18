@@ -1,6 +1,8 @@
 ---
 import { defaultLocale } from "@/config/i18n.config";
 
+import { withBasePath } from "../lib/with-base-path";
+
 export const prerender = false;
 
 /**
@@ -10,5 +12,5 @@ export const prerender = false;
  */
 const locale = Astro.preferredLocale ?? defaultLocale;
 
-return Astro.redirect(`/${locale}/`, 307);
+return Astro.redirect(withBasePath(`/${locale}/`), 307);
 ---
