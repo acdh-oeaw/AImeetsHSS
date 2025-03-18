@@ -22,13 +22,13 @@ ingress:
   annotations:
     kubernetes.io/ingressClassName: "nginx"
 livenessProbe:
-  path: "/"
+  path: "/conference/ai-meets-hss/"
   initialDelaySeconds: 15
   timeoutSeconds: 15
   scheme: "HTTP"
   probeType: "httpGet"
 readinessProbe:
-  path: "/"
+  path: "/conference/ai-meets-hss/"
   initialDelaySeconds: 5
   timeoutSeconds: 3
   scheme: "HTTP"
