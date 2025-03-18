@@ -5,11 +5,12 @@ import RadioGroupOptions from "@/components/form/radio-group-options.astro";
 import TextAreaField from "@/components/form/text-area-field.astro";
 import TextInputField from "@/components/form/text-input-field.astro";
 
+import { withBasePath } from "../lib/with-base-path";
 import Label from "./form/label.astro";
 ---
 
 <form
-	action="/api/submission"
+	action={withBasePath("/api/submission")}
 	class="grid gap-y-6"
 	data-astro-reload
 	method="post"

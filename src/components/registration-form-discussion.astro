@@ -1,8 +1,15 @@
 ---
 import TextInputField from "@/components/form/text-input-field.astro";
+
+import { withBasePath } from "../lib/with-base-path";
 ---
 
-<form action="/api/registration" class="grid gap-y-6" data-astro-reload method="post">
+<form
+	action={withBasePath("/api/registration")}
+	class="grid gap-y-6"
+	data-astro-reload
+	method="post"
+>
 	<TextInputField label="Vorname" name="first-name" required={true} />
 
 	<TextInputField label="Nachname" name="last-name" required={true} />
