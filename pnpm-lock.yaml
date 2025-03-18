@@ -4,6 +4,11 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+patchedDependencies:
+  '@keystatic/core@0.5.18':
+    hash: k25zw4fkc435xsayjtvg7nmqhu
+    path: patches/@keystatic__core@0.5.18.patch
+
 importers:
 
   .:
@@ -46,10 +51,10 @@ importers:
         version: 1.2.28
       '@keystatic/astro':
         specifier: ^5.0.3
-        version: 5.0.6(@keystatic/core@0.5.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@5.4.2(@types/node@22.13.10)(idb-keyval@6.2.1)(jiti@1.21.7)(rollup@4.35.0)(typescript@5.8.2)(yaml@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 5.0.6(@keystatic/core@0.5.18(patch_hash=k25zw4fkc435xsayjtvg7nmqhu)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@5.4.2(@types/node@22.13.10)(idb-keyval@6.2.1)(jiti@1.21.7)(rollup@4.35.0)(typescript@5.8.2)(yaml@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@keystatic/core':
-        specifier: ^0.5.42
-        version: 0.5.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: 0.5.18
+        version: 0.5.18(patch_hash=k25zw4fkc435xsayjtvg7nmqhu)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@mdx-js/mdx':
         specifier: ^3.1.0
         version: 3.1.0(acorn@8.14.1)
@@ -1114,11 +1119,11 @@ packages:
       react: ^18.2.0 || ^19.0.0
       react-dom: ^18.2.0 || ^19.0.0
 
-  '@keystatic/core@0.5.46':
-    resolution: {integrity: sha512-28Y6Yl+UaVjXIZcV/rUYMq3b/PyooWCVaFHViKUYaCy6qDVJL6mmxj8DUAdnbMUtT4WXnYnslv8OqAWjgM8Mhg==}
+  '@keystatic/core@0.5.18':
+    resolution: {integrity: sha512-ztfeCb59Tthom1Btk/FljZEQxp513+04rHfR/uCzyUanE66l+XJ5oe14Him2/qOZ6sdVo4+qXunGTEcwg8gfXA==}
     peerDependencies:
-      react: ^18.2.0 || ^19.0.0
-      react-dom: ^18.2.0 || ^19.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
 
   '@keyv/serialize@1.0.3':
     resolution: {integrity: sha512-qnEovoOp5Np2JDGonIDL6Ayihw0RhnRh6vxPuHo4RDn1UOzwEo4AeIfpL6UGIrsceWrCMiVPgwRjbHu4vYFc3g==}
@@ -1956,6 +1961,9 @@ packages:
   '@types/nlcst@2.0.3':
     resolution: {integrity: sha512-vSYNSDe6Ix3q+6Z7ri9lyWqgGhJTmzRjZRqyq15N0Z/1/UnVsno9G/N40NBijoYx2seFDIl0+B2mgAb9mezUCA==}
 
+  '@types/node@16.11.13':
+    resolution: {integrity: sha512-eUXZzHLHoZqj1frtUetNkUetYoJ6X55UmrVnFD4DMhVeAmwLjniZhtBmsRiemQh4uq4G3vUra/Ws/hs9vEvL3Q==}
+
   '@types/node@17.0.45':
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
 
@@ -2047,6 +2055,9 @@ packages:
   '@ungap/structured-clone@1.3.0':
     resolution: {integrity: sha512-WmoN8qaIAo7WTYWbAZuG8PYEhn5fkz7dZrqTBZ7dtt//lL2Gwms1IcnQ5yHqjDfX8Ft5j4YzDM23f87zBfDe9g==}
 
+  '@urql/core@4.3.0':
+    resolution: {integrity: sha512-wT+FeL8DG4x5o6RfHEnONNFVDM3616ouzATMYUClB6CB+iIu2mwfBKd7xSUxYOZmwtxna5/hDRQdMl3nbQZlnw==}
+
   '@urql/core@5.1.1':
     resolution: {integrity: sha512-aGh024z5v2oINGD/In6rAtVKTm4VmQ2TxKQBAtk2ZSME5dunZFcjltw4p5ENQg+5CBhZ3FHMzl0Oa+rwqiWqlg==}
 
@@ -2055,10 +2066,8 @@ packages:
     peerDependencies:
       '@urql/core': ^5.0.0
 
-  '@urql/exchange-graphcache@7.2.3':
-    resolution: {integrity: sha512-ClxbxlONfcGZOgZQxUIJ2hvy82mwuljQLVd957TgpSDzSCMLWCklWFubnSC5YFvQLR1kZJW+sbhWKd4ZpndF9w==}
-    peerDependencies:
-      '@urql/core': ^5.0.0
+  '@urql/exchange-graphcache@6.5.1':
+    resolution: {integrity: sha512-Ky77kuaTuo1H+VKZatXyNDqTMw+z03KV3Ep/6TQjktlc+0RDhEZq3rI4F/ViwqLaDUtGqPCYjmnHdoupXqdK0g==}
 
   '@urql/exchange-persisted@4.3.1':
     resolution: {integrity: sha512-VRGYFNW0gaT7+VCR/1rCMWEP9gvnDnlAolKisysLYkv8Zeysbqx+Omw4IgIRCLjI6oHWPkH8zOhFbqA3GRQ9HQ==}
@@ -2497,13 +2506,13 @@ packages:
   cookie-es@1.2.2:
     resolution: {integrity: sha512-+W7VmiVINB+ywl1HGXJXmrqkOhpKrIiVZV6tQuV54ZyQC7MMuBt81Vc336GMLoHBq5hV/F9eXgt5Mnx0Rha5Fg==}
 
+  cookie@0.5.0:
+    resolution: {integrity: sha512-YZ3GUyn/o8gfKJlnlX7g7xq4gyO6OSuhGPKaaGssGB2qgDUS0gPgtTvoyZLTt9Ab6dC4hfc9dV5arkvc/OCmrw==}
+    engines: {node: '>= 0.6'}
+
   cookie@0.7.2:
     resolution: {integrity: sha512-yki5XnKuf750l50uGTllt6kKILY4nQ1eNIQatoXEByZ5dWgnKqbnqmTrBE5B4N7lrMJKQ2ytWMiTO2o0v6Ew/w==}
     engines: {node: '>= 0.6'}
-
-  cookie@1.0.2:
-    resolution: {integrity: sha512-9Kr/j4O16ISv8zBBhJoi4bXOYNTkFLOqSL3UDB0njXxCXNezjeyVrJyGOWtgfs/q2km1gwBcfH8q1yEGoMYunA==}
-    engines: {node: '>=18'}
 
   cosmiconfig@7.1.0:
     resolution: {integrity: sha512-AdmX6xUzdNASswsFtmwSt7Vj8po9IuqXm0UXz7QKPuEUmPB4XyjGfaAr2PSuELMwkRMVH1EpIkX5bTZGRB3eCA==}
@@ -2594,6 +2603,9 @@ packages:
     peerDependenciesMeta:
       supports-color:
         optional: true
+
+  decimal.js-light@2.5.1:
+    resolution: {integrity: sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==}
 
   decimal.js@10.5.0:
     resolution: {integrity: sha512-8vDa8Qxvr/+d94hSh5P3IJwI5t8/c0KsMp+g8bNw9cY2icONa5aPfvKeieW1WlG0WQYwwhJ7mjui2xtiePQSXw==}
@@ -6894,25 +6906,26 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@keystatic/astro@5.0.6(@keystatic/core@0.5.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@5.4.2(@types/node@22.13.10)(idb-keyval@6.2.1)(jiti@1.21.7)(rollup@4.35.0)(typescript@5.8.2)(yaml@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@keystatic/astro@5.0.6(@keystatic/core@0.5.18(patch_hash=k25zw4fkc435xsayjtvg7nmqhu)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(astro@5.4.2(@types/node@22.13.10)(idb-keyval@6.2.1)(jiti@1.21.7)(rollup@4.35.0)(typescript@5.8.2)(yaml@2.7.0))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
-      '@keystatic/core': 0.5.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+      '@keystatic/core': 0.5.18(patch_hash=k25zw4fkc435xsayjtvg7nmqhu)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@types/react': 19.0.10
       astro: 5.4.2(@types/node@22.13.10)(idb-keyval@6.2.1)(jiti@1.21.7)(rollup@4.35.0)(typescript@5.8.2)(yaml@2.7.0)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
       set-cookie-parser: 2.7.1
 
-  '@keystatic/core@0.5.46(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@keystatic/core@0.5.18(patch_hash=k25zw4fkc435xsayjtvg7nmqhu)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@babel/runtime': 7.26.9
       '@braintree/sanitize-url': 6.0.4
+      '@emotion/css': 11.13.5
       '@emotion/weak-memoize': 0.3.1
       '@floating-ui/react': 0.24.8(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@internationalized/string': 3.2.5
       '@keystar/ui': 0.7.18(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      '@markdoc/markdoc': 0.4.0(@types/react@19.0.10)(react@18.3.1)
+      '@markdoc/markdoc': 0.4.0(@types/react@18.3.18)(react@18.3.1)
       '@react-aria/focus': 3.20.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/i18n': 3.12.6(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@react-aria/interactions': 3.24.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -6929,12 +6942,16 @@ snapshots:
       '@sindresorhus/slugify': 1.1.2
       '@toeverything/y-indexeddb': 0.10.0-canary.9(yjs@13.6.24)
       '@ts-gql/tag': 0.7.3(graphql@16.10.0)
-      '@types/react': 19.0.10
-      '@urql/core': 5.1.1(graphql@16.10.0)
-      '@urql/exchange-auth': 2.2.1(@urql/core@5.1.1(graphql@16.10.0))
-      '@urql/exchange-graphcache': 7.2.3(@urql/core@5.1.1(graphql@16.10.0))(graphql@16.10.0)
-      '@urql/exchange-persisted': 4.3.1(@urql/core@5.1.1(graphql@16.10.0))
-      cookie: 1.0.2
+      '@types/mdast': 4.0.4
+      '@types/node': 16.11.13
+      '@types/react': 18.3.18
+      '@types/react-dom': 18.3.5(@types/react@18.3.18)
+      '@urql/core': 4.3.0(graphql@16.10.0)
+      '@urql/exchange-auth': 2.2.1(@urql/core@4.3.0(graphql@16.10.0))
+      '@urql/exchange-graphcache': 6.5.1(graphql@16.10.0)
+      '@urql/exchange-persisted': 4.3.1(@urql/core@4.3.0(graphql@16.10.0))
+      cookie: 0.5.0
+      decimal.js-light: 2.5.1
       emery: 1.4.3
       escape-string-regexp: 4.0.0
       fast-deep-equal: 3.1.3
@@ -6947,14 +6964,14 @@ snapshots:
       lru-cache: 10.4.3
       match-sorter: 6.3.4
       mdast-util-from-markdown: 2.0.2
+      mdast-util-gfm: 3.1.0
       mdast-util-gfm-autolink-literal: 2.0.1
       mdast-util-gfm-strikethrough: 2.0.0
-      mdast-util-gfm-table: 2.0.0
       mdast-util-mdx: 3.0.0
       mdast-util-to-markdown: 2.1.2
+      micromark-extension-gfm: 3.0.0
       micromark-extension-gfm-autolink-literal: 2.1.0
       micromark-extension-gfm-strikethrough: 2.1.0
-      micromark-extension-gfm-table: 2.1.1
       micromark-extension-mdxjs: 3.0.0
       minimatch: 9.0.5
       partysocket: 0.0.22
@@ -6974,7 +6991,7 @@ snapshots:
       slate-react: 0.91.11(react-dom@18.3.1(react@18.3.1))(react@18.3.1)(slate@0.91.4)
       superstruct: 1.0.4
       unist-util-visit: 5.0.0
-      urql: 4.2.2(@urql/core@5.1.1(graphql@16.10.0))(react@18.3.1)
+      urql: 4.2.2(@urql/core@4.3.0(graphql@16.10.0))(react@18.3.1)
       y-prosemirror: 1.2.17(prosemirror-model@1.24.1)(prosemirror-state@1.4.3)(prosemirror-view@1.38.1)(y-protocols@1.0.6(yjs@13.6.24))(yjs@13.6.24)
       y-protocols: 1.0.6(yjs@13.6.24)
       yjs: 13.6.24
@@ -6986,10 +7003,10 @@ snapshots:
     dependencies:
       buffer: 6.0.3
 
-  '@markdoc/markdoc@0.4.0(@types/react@19.0.10)(react@18.3.1)':
+  '@markdoc/markdoc@0.4.0(@types/react@18.3.18)(react@18.3.1)':
     optionalDependencies:
       '@types/markdown-it': 12.2.3
-      '@types/react': 19.0.10
+      '@types/react': 18.3.18
       react: 18.3.1
 
   '@mdx-js/mdx@3.1.0(acorn@8.14.1)':
@@ -8218,6 +8235,8 @@ snapshots:
     dependencies:
       '@types/unist': 3.0.3
 
+  '@types/node@16.11.13': {}
+
   '@types/node@17.0.45': {}
 
   '@types/node@22.13.10':
@@ -8342,6 +8361,13 @@ snapshots:
 
   '@ungap/structured-clone@1.3.0': {}
 
+  '@urql/core@4.3.0(graphql@16.10.0)':
+    dependencies:
+      '@0no-co/graphql.web': 1.1.2(graphql@16.10.0)
+      wonka: 6.3.5
+    transitivePeerDependencies:
+      - graphql
+
   '@urql/core@5.1.1(graphql@16.10.0)':
     dependencies:
       '@0no-co/graphql.web': 1.1.2(graphql@16.10.0)
@@ -8349,12 +8375,12 @@ snapshots:
     transitivePeerDependencies:
       - graphql
 
-  '@urql/exchange-auth@2.2.1(@urql/core@5.1.1(graphql@16.10.0))':
+  '@urql/exchange-auth@2.2.1(@urql/core@4.3.0(graphql@16.10.0))':
     dependencies:
-      '@urql/core': 5.1.1(graphql@16.10.0)
+      '@urql/core': 4.3.0(graphql@16.10.0)
       wonka: 6.3.5
 
-  '@urql/exchange-graphcache@7.2.3(@urql/core@5.1.1(graphql@16.10.0))(graphql@16.10.0)':
+  '@urql/exchange-graphcache@6.5.1(graphql@16.10.0)':
     dependencies:
       '@0no-co/graphql.web': 1.1.2(graphql@16.10.0)
       '@urql/core': 5.1.1(graphql@16.10.0)
@@ -8362,9 +8388,9 @@ snapshots:
     transitivePeerDependencies:
       - graphql
 
-  '@urql/exchange-persisted@4.3.1(@urql/core@5.1.1(graphql@16.10.0))':
+  '@urql/exchange-persisted@4.3.1(@urql/core@4.3.0(graphql@16.10.0))':
     dependencies:
-      '@urql/core': 5.1.1(graphql@16.10.0)
+      '@urql/core': 4.3.0(graphql@16.10.0)
       wonka: 6.3.5
 
   '@vitejs/plugin-react@4.3.4(vite@6.2.1(@types/node@22.13.10)(jiti@1.21.7)(yaml@2.7.0))':
@@ -8956,9 +8982,9 @@ snapshots:
 
   cookie-es@1.2.2: {}
 
-  cookie@0.7.2: {}
+  cookie@0.5.0: {}
 
-  cookie@1.0.2: {}
+  cookie@0.7.2: {}
 
   cosmiconfig@7.1.0:
     dependencies:
@@ -9051,6 +9077,8 @@ snapshots:
   debug@4.4.0:
     dependencies:
       ms: 2.1.3
+
+  decimal.js-light@2.5.1: {}
 
   decimal.js@10.5.0: {}
 
@@ -12688,9 +12716,9 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  urql@4.2.2(@urql/core@5.1.1(graphql@16.10.0))(react@18.3.1):
+  urql@4.2.2(@urql/core@4.3.0(graphql@16.10.0))(react@18.3.1):
     dependencies:
-      '@urql/core': 5.1.1(graphql@16.10.0)
+      '@urql/core': 4.3.0(graphql@16.10.0)
       react: 18.3.1
       wonka: 6.3.5
 

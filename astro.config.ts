@@ -26,7 +26,9 @@ export default defineConfig({
 	i18n: {
 		defaultLocale,
 		locales: locales as Writable<typeof locales>,
-		routing: "manual",
+		routing: {
+			prefixDefaultLocale: true,
+		},
 	},
 	integrations: [
 		icon({
@@ -65,14 +67,6 @@ export default defineConfig({
 				env.PUBLIC_APP_BASE_PATH != null
 					? `${env.PUBLIC_APP_BASE_PATH.replace(/\/$/, "")}/keystatic`
 					: "/keystatic",
-			status: 307,
-		},
-		"/de/publications": {
-			destination: "/de/publikationen",
-			status: 307,
-		},
-		"/en/publikationen": {
-			destination: "/en/publications",
 			status: 307,
 		},
 	},
