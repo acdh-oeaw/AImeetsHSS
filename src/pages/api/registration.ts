@@ -5,7 +5,7 @@ import * as v from "valibot";
 import { env } from "@/config/env.config";
 import { createConferenceRegistration } from "@/lib/baserow";
 import { sendEmail } from "@/lib/email";
-import { withBasePath } from "@/lib/with-base-path.ts";
+import { withBasePath } from "@/lib/with-base-path";
 
 export const prerender = false;
 
@@ -84,8 +84,8 @@ export async function POST(context: APIContext) {
 		} else if (result.output.type === "discussion") {
 			subject = `[AImeetsHSS] Anmeldung Podiumsdiskussion ${submission.lastName}`;
 			message =
-				`WerteR ${submission.firstName} ${submission.lastName},\n` +
-				`untenan übersenden wir Ihnen ihre Anmeldedaten zur Podiumsdiskussion am XXXX.\n` +
+				`Werte:r ${submission.firstName} ${submission.lastName},\n` +
+				`untenan übersenden wir Ihnen ihre Anmeldedaten zur Podiumsdiskussion am 25. Juni 2025.\n` +
 				`ID: ${res.id as string}\n` +
 				`Vorname: ${submission.firstName}\n` +
 				`Nachname: ${submission.lastName}\n` +
@@ -93,7 +93,7 @@ export async function POST(context: APIContext) {
 				`Institution: ${submission.affiliation}\n` +
 				`Anmeldedatum: ${submission.date}\n` +
 				`Angemeldet für: ${submission.type}\n` +
-				`Wir dürfen Sie als Teilnehmer/in an der Podiumsdiskussion darüber informieren, dass im Rahmen dieser Veranstaltung möglicherweise Fotografien und/oder Filme erstellt werden. Diese Aufnahmen können in verschiedenen Medien (Print, TV, Online,...) und in Publikationen (Print, Online,...) der Österreichischen Akademie der Wissenschaften Verwendung finden. Mit Ihrer Teilnahme an der Veranstaltung stimmen Sie dieser Verwendung zu.\n` +
+				`Wir dürfen Sie als Teilnehmer:in an der Podiumsdiskussion darüber informieren, dass im Rahmen dieser Veranstaltung möglicherweise Fotografien und/oder Filme erstellt werden. Diese Aufnahmen können in verschiedenen Medien (Print, TV, Online,...) und in Publikationen (Print, Online,...) der Österreichischen Akademie der Wissenschaften Verwendung finden. Mit Ihrer Teilnahme an der Veranstaltung stimmen Sie dieser Verwendung zu.\n` +
 				`Beste Grüße,\nDas AImeetsHSS Konferenzteam`;
 		}
 		await sendEmail({
