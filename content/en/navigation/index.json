@@ -20,10 +20,17 @@
             }
           },
           {
-            "discriminant": "page",
+            "discriminant": "link",
             "value": {
               "label": "Podiumsdiskussion",
-              "id": "podiumsdiskussion"
+              "href": "/registration-discussion"
+            }
+          },
+          {
+            "discriminant": "link",
+            "value": {
+              "label": "Registration",
+              "href": "/registration-conference"
             }
           }
         ]
