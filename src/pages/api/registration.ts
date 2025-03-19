@@ -5,6 +5,7 @@ import * as v from "valibot";
 import { env } from "@/config/env.config";
 import { createConferenceRegistration } from "@/lib/baserow";
 import { sendEmail } from "@/lib/email";
+import { withBasePath } from "@/lib/with-base-path.ts";
 
 export const prerender = false;
 
@@ -101,7 +102,7 @@ export async function POST(context: APIContext) {
 			subject: subject,
 			text: message,
 		});
-		return context.redirect(`/en/success?data=${encodeURIComponent(JSON.stringify(res))}`, 303);
+		return context.redirect(withBasePath(`/en/success`), 303);
 	} catch (error) {
 		log.error(error);
 		return Response.json({ message: "Failed to submit." }, { status: 500 });
