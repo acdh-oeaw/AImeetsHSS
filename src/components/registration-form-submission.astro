@@ -56,7 +56,9 @@ import Label from "./form/label.astro";
 		<input class="mr-0.5" name="data-consent" required={true} type="checkbox" />
 		<span>
 			I expressly acknowledge the storage of my registration details for the duration of the
-			conference in line with the <a href="/en/privacy-declaration/">privacy declaration.</a>
+			conference in line with the <a href={withBasePath("/en/privacy-declaration/")}
+				>privacy declaration.</a
+			>
 		</span>
 	</label>
 

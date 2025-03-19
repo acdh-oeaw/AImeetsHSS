@@ -25,7 +25,8 @@ import { withBasePath } from "../lib/with-base-path";
 		<input class="mr-0.5" name="data-consent" required={true} type="checkbox" />
 		<span>
 			Ich stimme der Speicherung und Verarbeitung meiner Daten für die Dauer der Konferenz, wie in
-			unserer <a href="/en/privacy-declaration/">Datenschutzerklärung</a> festgelegt, ausdrücklich zu.
+			unserer <a href={withBasePath("/en/privacy-declaration/")}>Datenschutzerklärung</a> festgelegt,
+			ausdrücklich zu.
 		</span>
 	</label>
 
