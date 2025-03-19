@@ -23,7 +23,14 @@
             "discriminant": "link",
             "value": {
               "label": "Podiumsdiskussion",
-              "href": "/registration-conference/"
+              "href": "/registration-discussion"
+            }
+          },
+          {
+            "discriminant": "link",
+            "value": {
+              "label": "Registration",
+              "href": "/registration-conference"
             }
           }
         ]
