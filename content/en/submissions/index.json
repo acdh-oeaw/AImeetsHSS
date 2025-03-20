@@ -2,8 +2,6 @@
   "hero": {
     "title": "Call for Posters & Demos",
     "subtitle": "is now open",
-    "image": {
-      "src": "/conference/ai-meets-hss/assets/content/en/submissions/hero/image/src.jpg"
-    }
+    "image": {}
   }
 }
