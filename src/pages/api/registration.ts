@@ -78,8 +78,11 @@ export async function POST(context: APIContext) {
 				`Email: ${submission.email}\n` +
 				`Affiliation: ${submission.affiliation}\n` +
 				`Registration Date: ${submission.date}\n` +
-				`Registered for: ${submission.type}\n` +
-				`We would like to inform you, that there will be pictures taken and/or filming during the conference. This material may be used for various media (print, TV, online) and publications (print, online) of the Austrian Academy of Sciences. With your participation you agree to the use of this material.\n` +
+				`Registered for: ${submission.type}\n${submission.monday ? "Monday, 23 June 2025\n" : ""}${
+					submission.tuesday ? "Tuesday, 24 June 2025\n" : ""
+				}${submission.wednesday ? "Wednesday, 25 June 2025\n" : ""}${
+					submission.discussion ? "Panel Discussion on Wednesday, 25 June 2025 (in German!)\n" : ""
+				}We would like to inform you, that there will be pictures taken and/or filming during the conference. This material may be used for various media (print, TV, online) and publications (print, online) of the Austrian Academy of Sciences. With your participation you agree to the use of this material.\n` +
 				`Best,\nThe AImeetsHSS team`;
 		} else if (result.output.type === "discussion") {
 			subject = `[AImeetsHSS] Anmeldung Podiumsdiskussion ${submission.lastName}`;
