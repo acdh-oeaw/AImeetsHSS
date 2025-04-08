@@ -27,7 +27,7 @@ const RegistrationFormSchema = v.pipe(
 		language: v.picklist(["english", "german"]),
 		title: v.pipe(v.string(), v.nonEmpty()),
 		abstract: FileSchema,
-		comments: v.pipe(v.string()),
+		comments: v.optional(v.pipe(v.string())),
 		"data-consent": v.literal("on"),
 	}),
 	v.transform((data) => {
@@ -40,7 +40,7 @@ const RegistrationFormSchema = v.pipe(
 			language: data.language,
 			title: data.title,
 			abstract: data.abstract,
-			comments: data.comments,
+			comments: data.comments ?? "",
 			dataConsent: true,
 			date: isoDate(new Date()),
 		};
