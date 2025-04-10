@@ -56,30 +56,51 @@ export const pages = createCollection((locale) => {
 	});
 });
 
-export const links = createCollection((locale) => {
-	const paths = createCollectionPaths("/links/", locale);
+export const events = createCollection((locale) => {
+	const paths = createCollectionPaths("/events/", locale);
 
 	return collection({
-		label: createLabel("Links", locale),
+		label: createLabel("Events", locale),
 		path: paths.contentPath,
-		slugField: "name",
+		slugField: "title",
 		format: { contentField: "content" },
 		entryLayout: "content",
-		columns: ["name"],
-		// previewUrl: createPreviewUrl("/links/{slug}"),
+		columns: ["title"],
+		// previewUrl: createPreviewUrl("/events/{slug}"),
 		schema: {
-			name: fields.slug({
+			title: fields.slug({
 				name: {
-					label: "Name",
+					label: "Title",
 					validation: { isRequired: true },
 				},
 			}),
-			href: fields.url({
-				label: "URL",
+			date: fields.date({
+				label: "Date",
 				validation: { isRequired: true },
 			}),
+			image: fields.object(
+				{
+					src: fields.image({
+						label: "Image",
+						validation: { isRequired: false },
+						...createAssetOptions(paths.assetPath),
+					}),
+					caption: fields.text({
+						label: "Image caption",
+						validation: { isRequired: false },
+					}),
+				},
+				{
+					label: "Image",
+				},
+			),
+			summary: fields.text({
+				label: "Summary",
+				validation: { isRequired: true },
+				multiline: true,
+			}),
 			content: fields.mdx({
-				label: "Description",
+				label: "Content",
 				options: createContentFieldOptions(paths.assetPath),
 				components: {},
 			}),

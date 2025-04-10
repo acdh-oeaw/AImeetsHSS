@@ -1,0 +1,102 @@
+---
+import type { GetStaticPathsResult } from "astro";
+
+import ImageOverlay from "@/components/image-overlay.astro";
+import Section from "@/components/section.astro";
+import { locales } from "@/config/i18n.config";
+import Layout from "@/layouts/page.layout.astro";
+import { createCollectionResource } from "@/lib/content/create-resource";
+import { createI18n } from "@/lib/i18n/create-i18n";
+
+export async function getStaticPaths() {
+	return (
+		await Promise.all(
+			locales.map(async (locale) => {
+				const ids = await createCollectionResource("events", locale).list();
+
+				return ids
+					.filter((id) => !["conferences", "pages", "imprint", "links"].includes(id))
+					.map((id) => {
+						return { params: { id, locale } };
+					});
+			}),
+		)
+	).flat() satisfies GetStaticPathsResult;
+}
+
+const { id, locale } = Astro.params;
+
+const { t } = await createI18n(locale);
+
+const page = await createCollectionResource("events", locale).read(id);
+
+const { content, image, title, date, summary } = page.data;
+
+const { default: Content } = await page.compile(content);
+---
+
+<Layout locale={locale} title={title}>
+	<main class="mb-2xl">
+		<section class:list={[image?.src && "border-b border-neutral-200"]} class="relative">
+			{
+				image?.src ? (
+					<figure>
+						<img
+							alt=""
+							class="absolute inset-0 size-full object-cover"
+							loading="eager"
+							src={image.src}
+						/>
+						{image.caption ? (
+							<figcaption class="absolute bottom-1.5 right-2 z-10 text-xs font-medium text-neutral-300">
+								{image.caption}
+							</figcaption>
+						) : null}
+						<ImageOverlay />
+					</figure>
+				) : null
+			}
+			<div
+				class:list={[image?.src ? "text-white" : "border-b border-neutral-200"]}
+				class="container relative z-10 py-2xl"
+			>
+				<div class="grid justify-start justify-items-start gap-y-xs py-2xl sm:gap-y-0">
+					<h1
+						class="relative inline-block text-5xl font-bold lowercase tracking-tighter before:absolute xs:text-6xl sm:text-7xl md:text-8xl"
+					>
+						{title}
+					</h1>
+					<p
+						class:list={[image?.src ? "text-white" : "text-text-weak"]}
+						class="relative inline-block text-2xl font-semibold tracking-tight sm:ml-12 md:ml-16 md:text-3xl"
+					>
+						{
+							Date.parse(date)
+								? new Intl.DateTimeFormat("en-GB", {
+										dateStyle: "full",
+									}).format(new Date(date))
+								: null
+						}
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<Section>
+			<div class="container prose py-xl">
+				{summary ? <div class="font-semibold">{summary}</div> : null}
+			</div>
+			<div class="container prose py-xl">
+				{
+					content ? (
+						<Content />
+					) : (
+						<p class="flex justify-center py-xl text-center text-sm text-text-weak">
+							{t("common.coming-soon")}
+						</p>
+					)
+				}
+			</div>
+		</Section>
+	</main>
+</Layout>

@@ -4,7 +4,7 @@ import { config } from "@keystatic/core";
 
 import { env } from "@/config/env.config";
 import { locales } from "@/config/i18n.config";
-import { pages } from "@/lib/keystatic/collections";
+import { events, pages } from "@/lib/keystatic/collections";
 import { withI18nPrefix } from "@/lib/keystatic/lib";
 import { Logo } from "@/lib/keystatic/logo";
 import {
@@ -19,16 +19,14 @@ import {
 export default config({
 	collections: {
 		[withI18nPrefix("pages", "en")]: pages("en"),
+		[withI18nPrefix("events", "en")]: events("en"),
 	},
 	singletons: {
 		[withI18nPrefix("indexPage", "en")]: indexPage("en"),
-
 		[withI18nPrefix("registrationPageConference", "en")]: registrationPageConference("en"),
 		[withI18nPrefix("registrationPageDiscussion", "en")]: registrationPageDiscussion("en"),
 		[withI18nPrefix("registrationPageSubmission", "en")]: registrationPageSubmission("en"),
-
 		[withI18nPrefix("metadata", "en")]: metadata("en"),
-
 		[withI18nPrefix("navigation", "en")]: navigation("en"),
 	},
 	storage:
@@ -61,6 +59,7 @@ export default config({
 				...locales.map((locale) => withI18nPrefix("registrationPageSubmission", locale)),
 			],
 			Pages: locales.map((locale) => withI18nPrefix("pages", locale)),
+			Events: locales.map((locale) => withI18nPrefix("events", locale)),
 			Navigation: locales.map((locale) => withI18nPrefix("navigation", locale)),
 			Metadata: locales.map((locale) => withI18nPrefix("metadata", locale)),
 		},
