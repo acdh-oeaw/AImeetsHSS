@@ -6,5 +6,18 @@
       "src": "/conference/ai-meets-hss/assets/content/en/index-page/hero/image/src.jpg"
     }
   },
-  "sections": []
+  "sections": [
+    {
+      "discriminant": "data",
+      "value": {
+        "title": "Programme",
+        "lead": "Conference Programme",
+        "collections": [
+          "events"
+        ],
+        "filter": "all",
+        "count": 3
+      }
+    }
+  ]
 }

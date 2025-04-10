@@ -1,0 +1,126 @@
+---
+import type { GetStaticPathsResult } from "astro";
+import { compareDesc } from "date-fns";
+
+import Card from "@/components/card.astro";
+import GridList from "@/components/grid-list.astro";
+import ImageOverlay from "@/components/image-overlay.astro";
+import Section from "@/components/section.astro";
+import { locales } from "@/config/i18n.config";
+import Layout from "@/layouts/page.layout.astro";
+import { createCollectionResource } from "@/lib/content/create-resource";
+import { getFormatter } from "@/lib/formatter";
+import { createI18n } from "@/lib/i18n/create-i18n";
+
+export async function getStaticPaths() {
+	return locales.map((locale) => {
+		return { params: { locale } };
+	}) satisfies GetStaticPathsResult;
+}
+
+const { locale } = Astro.params;
+
+const { t } = await createI18n(locale);
+
+const page = await createCollectionResource("pages", locale).read("programme");
+const events = await createCollectionResource("events", locale).all();
+events.sort((a, z) => {
+	return compareDesc(a.data.date, z.data.date);
+});
+
+const { content, image, title } = page.data;
+
+const { default: Content } = await page.compile(content);
+
+const formatter = getFormatter(locale);
+---
+
+<Layout locale={locale} title={title}>
+	<main class="mb-2xl">
+		<section class:list={[image?.src && "border-b border-neutral-200"]} class="relative">
+			{
+				image?.src ? (
+					<figure>
+						<img
+							alt=""
+							class="absolute inset-0 size-full object-cover"
+							loading="eager"
+							src={image.src}
+						/>
+						{image.caption ? (
+							<figcaption class="absolute bottom-1.5 right-2 z-10 text-xs font-medium text-neutral-300">
+								{image.caption}
+							</figcaption>
+						) : null}
+						<ImageOverlay />
+					</figure>
+				) : null
+			}
+			<div
+				class:list={[image?.src ? "text-white" : "border-b border-neutral-200"]}
+				class="container relative py-2xl"
+			>
+				<div class="grid gap-y-sm">
+					<h1 class="text-display lowercase">{title}</h1>
+				</div>
+			</div>
+		</section>
+
+		<Section>
+			<div class="container prose py-xl">
+				{
+					content ? (
+						<Content />
+					) : (
+						<p class="flex justify-center py-xl text-center text-sm text-text-weak">
+							{t("common.coming-soon")}
+						</p>
+					)
+				}
+			</div>
+		</Section>
+
+		<Section>
+			<div class="container py-xl">
+				{
+					events.length > 0 ? (
+						<GridList>
+							{events
+								.map((event) => {
+									const { data, id } = event;
+
+									const { date, image, title, summary } = data;
+
+									const href = `/programme/${id}`;
+
+									return (
+										<li>
+											<Card href={href} image={image} title={title}>
+												<dl class="grid content-start gap-y-xs text-text-weak">
+													<div class="leading-snug">
+														<dt class="text-uppercase uppercase">{t("common.date")}</dt>
+														<dd class="font-medium">
+															<time datetime={date}>{formatter.date.format(new Date(date))}</time>
+														</dd>
+													</div>
+													<div class="leading-snug">
+														<dt class="text-uppercase uppercase">Summary</dt>
+														<dd class="font-medium">{summary}</dd>
+													</div>
+												</dl>
+											</Card>
+										</li>
+									);
+								})
+								.reverse()}
+						</GridList>
+					) : (
+						<p class="flex justify-center py-xl text-center text-sm text-text-weak">
+							{t("common.coming-soon")}
+						</p>
+					)
+				}
+			</div>
+		</Section>
+	</main>
+</Layout>
