@@ -36,8 +36,8 @@
           {
             "discriminant": "link",
             "value": {
-              "label": "Registration",
-              "href": "/registration-conference"
+              "label": "Posters & Demos",
+              "href": "/posters-and-live-demos"
             }
           }
         ]
@@ -46,8 +46,8 @@
     {
       "discriminant": "link",
       "value": {
-        "label": "Call for Posters & Demos",
-        "href": "/posters-and-live-demos"
+        "label": "Registration",
+        "href": "/registration-conference"
       }
     },
     {
