@@ -29,6 +29,13 @@
           {
             "discriminant": "link",
             "value": {
+              "label": "Speakers",
+              "href": "/speakers"
+            }
+          },
+          {
+            "discriminant": "link",
+            "value": {
               "label": "Registration",
               "href": "/registration-conference"
             }
