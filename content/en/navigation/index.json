@@ -60,15 +60,8 @@
     {
       "discriminant": "page",
       "value": {
-        "label": "Organisation",
+        "label": "Organisation & Contact",
         "id": "organisation"
-      }
-    },
-    {
-      "discriminant": "page",
-      "value": {
-        "label": "Contact",
-        "id": "contact"
       }
     }
   ]
