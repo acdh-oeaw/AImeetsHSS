@@ -22,3 +22,7 @@ body {
 		radial-gradient(at 64% 96%, hsl(0deg 100% 100% / 70%) 0, transparent 50%),
 		radial-gradient(at 100% 30%, hsl(0deg 100% 100% / 70%) 0, transparent 50%);
 }
+
+[id] {
+	scroll-margin-top: 500px;
+}

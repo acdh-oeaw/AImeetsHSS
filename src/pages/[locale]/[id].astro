@@ -15,7 +15,7 @@ export async function getStaticPaths() {
 				const ids = await createCollectionResource("pages", locale).list();
 
 				return ids
-					.filter((id) => !["conferences", "events", "imprint", "links"].includes(id))
+					.filter((id) => !["imprint"].includes(id))
 					.map((id) => {
 						return { params: { id, locale } };
 					});
