@@ -44,6 +44,28 @@
       }
     },
     {
+      "discriminant": "menu",
+      "value": {
+        "label": "Podiumsdiskussion",
+        "links": [
+          {
+            "discriminant": "page",
+            "value": {
+              "label": "Discussants",
+              "id": "discussants"
+            }
+          },
+          {
+            "discriminant": "page",
+            "value": {
+              "label": "Registration",
+              "id": "registration"
+            }
+          }
+        ]
+      }
+    },
+    {
       "discriminant": "link",
       "value": {
         "label": "Registration",
