@@ -56,10 +56,10 @@
             }
           },
           {
-            "discriminant": "page",
+            "discriminant": "link",
             "value": {
               "label": "Registration",
-              "id": "registration"
+              "href": "/registration-discussion/"
             }
           }
         ]
