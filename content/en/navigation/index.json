@@ -22,13 +22,6 @@
           {
             "discriminant": "link",
             "value": {
-              "label": "Podiumsdiskussion",
-              "href": "/registration-discussion"
-            }
-          },
-          {
-            "discriminant": "link",
-            "value": {
               "label": "Speakers",
               "href": "/speakers"
             }
