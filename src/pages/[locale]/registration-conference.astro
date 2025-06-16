@@ -2,7 +2,7 @@
 import type { GetStaticPathsResult } from "astro";
 
 import ImageOverlay from "../../components/image-overlay.astro";
-import RegistrationForm from "../../components/registration-form-conference.astro";
+// import RegistrationForm from "../../components/registration-form-conference.astro";
 import Section from "../../components/section.astro";
 import { locales } from "../../config/i18n.config";
 import Layout from "../../layouts/page.layout.astro";
@@ -79,10 +79,12 @@ const { default: Content } = await page.compile(content);
 				}
 			</div>
 		</Section>
+		<!-- Registration Form Section
 		<Section>
 			<div class="container prose py-xl">
 				<RegistrationForm />
 			</div>
 		</Section>
+		-->
 	</main>
 </Layout>
