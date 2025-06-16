@@ -47,13 +47,6 @@
               "label": "Discussants",
               "id": "discussants"
             }
-          },
-          {
-            "discriminant": "link",
-            "value": {
-              "label": "Registration",
-              "href": "/registration-discussion/"
-            }
           }
         ]
       }
