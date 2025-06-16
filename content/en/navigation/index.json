@@ -37,18 +37,10 @@
       }
     },
     {
-      "discriminant": "menu",
+      "discriminant": "page",
       "value": {
         "label": "Podiumsdiskussion",
-        "links": [
-          {
-            "discriminant": "page",
-            "value": {
-              "label": "Discussants",
-              "id": "discussants"
-            }
-          }
-        ]
+        "id": "discussants"
       }
     },
     {
